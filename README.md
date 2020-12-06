@@ -3,7 +3,8 @@
    GitHubUserSearch is an example that using [ReactorKit](https://github.com/ReactorKit/ReactorKit) and [Swinject](https://github.com/Swinject/Swinject) and RxSwift
 
 
-   | Receive Results | :-: |
+   | Receive Results | 
+   | :-: |
    | ![](./screenshot/screenshot_githubusersearch.png) | 
 
    ## TODO
