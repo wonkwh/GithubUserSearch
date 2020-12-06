@@ -11,10 +11,10 @@
 
    - [x] Search with TextField's text
    - [x] Reflect API responses to List
-   - [] converting to Combine
-   - [] Separate API access from BindableObject
-   - [] Use Combine with API access
-   - [] Reflect responses in MainThread via Combine
+   - [ ] converting to Combine
+   - [ ] Separate API access from BindableObject
+   - [ ] Use Combine with API access
+   - [ ] Reflect responses in MainThread via Combine
 
    ## Requirements
 
