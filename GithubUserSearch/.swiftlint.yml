@@ -1,0 +1,192 @@
+disabled_rules: # rule identifiers to exclude from running
+  - identifier_name
+  # - todo
+  - trailing_newline
+  # - type_name
+  - function_body_length
+  - missing_docs
+  - type_body_length
+  - unused_closure_parameter
+  - empty_parentheses_with_trailing_closure
+  - redundant_string_enum_value
+  - vertical_whitespace
+  - class_delegate_protocol
+  - syntactic_sugar
+  - implicit_getter
+  - weak_delegate
+  - shorthand_operator
+  - trailing_comma
+  - unused_optional_binding
+  - empty_enum_arguments
+  - discarded_notification_center_observer
+  - block_based_kvo
+  - is_disjoint
+  - multiple_closures_with_trailing_closure
+  - fallthrough
+  - switch_case_alignment
+  - trailing_whitespace # custom rule로 변경
+  - leading_whitespace
+  - operator_whitespace
+  - legacy_cggeometry_functions
+  - unneeded_break_in_switch
+  - closure_parameter_position
+  - file_header
+  - vertical_parameter_alignment #TODO 
+  - void_return
+  - orphaned_doc_comment
+  - large_tuple
+  - xctfail_message
+  - opening_brace
+opt_in_rules: # some rules are only opt-in
+  - empty_count
+  - closing_brace
+  - opening_brace
+  - return_arrow_whitespace
+  - trailing_semicolon
+  - statement_position
+  - explicit_init
+  - shorthand_operator
+  - private_over_fileprivate
+
+
+  # swiftlint rules
+included: 
+excluded: 
+  - Carthage
+  - Pods
+  - fastlane/
+  #- Example/3rdParty
+  - submodule/DesignKit/Sources/DesignKit/3rdParty/
+  - submodule/DesignKit/.swiftpm/
+  - submodule/MessageKit/.swiftpm/
+  - submodule/MessageKit/Sources/MessageKit/Disk
+  - submodule/MessageKit/Sources/MessageKit/InputBarAccessoryView
+  - Moim/Utilities//CryptoBadge/GraphQL/Generated/
+  
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+trailing_semicolon: error
+empty_count: error
+closing_brace: error
+opening_brace: error
+return_arrow_whitespace: error
+statement_position:
+  severity: error
+colon:
+  severity: error
+comma: error
+force_try: warning
+force_cast: warning
+line_length: 130
+type_body_length:
+  - 300 # warning
+  - 400 # error
+file_length:
+  warning: 450
+  error: 600
+# naming rules can set warnings/errors for min_length and max_length
+# additionally they can set excluded names
+
+type_name:
+  min_length: 3 # only warning
+  max_length: # warning and error
+    warning: 40
+    error: 50
+  excluded: iPhone # excluded via string
+  allowed_symbols: ["_"] # these are allowed in type names
+
+identifier_name:
+  min_length: # only min_length
+    error: 3 # only error
+  excluded: # excluded via string array
+    - id
+    - URL
+    - X
+    - Y
+    - XY
+    - Hub
+    - Url
+nesting:
+  type_level: 3
+
+cyclomatic_complexity: 30
+
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
+
+custom_rules:
+    # enum_case:
+    #     include: "*.swift"
+    #     name: "[Naming Guide]"
+    #     message: "enum case 는 소문자로 시작"
+    #     regex: "case[[:space:]][A-Z]"
+    #     severity: warning 
+    equal_sign_whitespace:
+        name: "Equal Sign WhiteSpace"
+        message: "Expected only one space before and after ="
+        regex: "(([ ]{2,}=)|(=[ ]{2,}))"
+    protocol_conformance:
+        name: "Protocol Conformance"
+        message: "Protocol conformance should be declared in separate extensions in the same file"
+        regex: "(class|struct|extension)[[:space:]]+(?i:(?![^d]*delegate:))[^'\"()<>{},!?:]+:([^'\"<>(){},!?:]+,)+[^'\"<>(){},!?:]*\\{"
+        match_kinds:
+          - keyword
+        severity: warning
+    computed_property:
+        name: "Computed Properties"
+        message: "The get clause should be omitted if the computed property is read only"
+        regex: "var[[:space:]]+[^:]+:[^{]*\\{[[:space:]]*get[[:space:]]*\\{[^}]+\\}(?![[:space:]]*set)"
+        match_kinds:
+          - keyword
+        severity: warning
+    nested_self_usage:
+        name: "Nested .self usage"
+        message: ".self shouldn't be used more than once on a given statement"
+        regex: "(?<!\")self\\.(?:\\p{L}+\\.)*self"
+        severity: warning  
+    too_many_line_breaks:
+        name: "[Coding Style]"
+        regex: '(?:\ *\n){3,}'
+        message: "2줄 이상 띄우지 않는다"
+        severity: warning
+    documentation_ticks:  
+        name: "Documentation Ticks"
+        regex: "´"
+        message: "Incorrect Markdown format used. Mark types in '`' instead of '´' for proper formatting."
+        match_kinds:
+          - comment
+          - doccomment
+        severity: warning
+    logging:
+        name: "Logging"
+        regex: "(print|NSLog|dump)\\("
+        message: "Using print or NSLog is considered unsecure and inefficient. Use `Log.debug()`"
+        severity: warning
+    tabs:
+        name: "Tab Whitespace"
+        regex: "\\t"
+        message: "Using tabs is discouraged. Use spaces only."
+        severity: warning
+    tabs_space: 
+        name: "[Coding Style]"
+        regex: '(^  \w+)'
+        message: "tap은 4 space 로 사용"
+        severity: warning
+    # same_line_return:
+    #     name: "[Coding Style]"
+    #     message: "같은 라인에 return 붙이지 말고 새로운 라인에"
+    #     regex: "else\\b[^\\n]*\\}"
+    #     severity: warning
+
+    # Custom rule violating when type inference is not used.
+    # Violating:
+    #   let view: UIView = UIView()
+    #   view.backgroundColor = UIColor.red()
+    # Non-violating:
+    #   let view = UIView()
+    #   view.backgroundColor = .red
+    type_inferred_context:
+        name: "type_inferred_context"
+        regex: "(\\:\\s(\\w+)\\s\\=\\s\\1|\\.priority\\s\\=\\sUILayoutPriority\\.|(textColor|highlightedTextColor|tintColor)\\s\\=\\sUIColor\\.|image\\s\\=\\sUIImage\\.|\\.alignmentMode\\s=\\sCATextLayerAlignmentMode\\.|separatorInset\\s=\\sUIEdgeInsets\\.|layoutMargins\\s=\\sUIEdgeInsets\\.)"
+        message: "Type inferred context is preferred over explicit types."
+        severity: warning

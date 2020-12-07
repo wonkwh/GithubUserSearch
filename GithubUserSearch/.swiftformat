@@ -1,0 +1,43 @@
+# fileHeader
+#--header ignore
+--header "//\nCreated by kwanghyun.won \nCopyright © 2020 wonkwh. All rights reserved.\n//"
+"
+# indent
+--indent 4
+
+# numberFormatting
+--decimalgrouping 3
+--hexgrouping "ignore"
+
+# redundantSelf
+# Reference `self` explicitly
+--self init-only
+
+# isEmpty
+--enable isEmpty
+
+--trailingclosures
+
+# ranges
+--nospaceoperators
+
+# trailingCommas
+--commas inline
+
+# unusedArguments
+--stripunusedargs closure-only
+
+# wrapArguments
+--wraparguments before-first
+--wrapcollections before-first
+--closingparen balanced
+--maxwidth 130
+
+# Disabled rules
+# --disable wrapMultilineStatementBraces
+--disable redundantInit
+--disable void
+--disable redundantReturn 
+
+# Excluded files
+--exclude 
